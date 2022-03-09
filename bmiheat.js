@@ -1,8 +1,8 @@
 var nj = require('numjs');
-var Heat = require('./heat.js')
-var Bmi = require('./bmi.js')
+var Heat = require('./heat')
+var Bmi = require('./bmi')
 
-class BmiHeat{
+class BmiHeat extends Bmi{
     
     _name = "The 2D Heat Equation"
     _input_var_names = ["plate_surface__temperature",]
@@ -10,7 +10,7 @@ class BmiHeat{
 
 
     constructor(){
-        // """Create a BmiHeat model that is ready for initialization."""
+        //  Create a BmiHeat model that is ready for initialization. 
         this._model = null;
         this._values = {};
         this._var_units = {}
@@ -24,14 +24,14 @@ class BmiHeat{
     }
 
     initialize(filename=null){
-        // """Initialize the Heat model.
+        //  Initialize the Heat model.
         // Parameters
         // ----------
         // filename : str, optional
         //     Path to name of input file.
-        // """
+        //  
         if (filename==null){
-            this._model = Heat
+            this._model =new Heat();
         }
         else if (filename instanceof String){
                 var rawFile = new XMLHttpRequest();
@@ -64,17 +64,17 @@ class BmiHeat{
         
 
     update(){
-        // """Advance model by one time step."""
+        //  Advance model by one time step. 
         this._model.advance_in_time()
     }
 
     update_frac(time_frac){
-        // """Update model by a fraction of a time step.
+        //  Update model by a fraction of a time step.
         // Parameters
         // ----------
         // time_frac : float
         //     Fraction fo a time step.
-        // """
+        //  
         time_step = this.get_time_step()
         this._model.time_step = time_frac * time_step
         this.update()
@@ -82,12 +82,12 @@ class BmiHeat{
     }
 
     update_until(then){
-        // """Update model until a particular time.
+        //  Update model until a particular time.
         // Parameters
         // ----------
         // then : float
         //     Time to run model until.
-        // """
+        //  
         n_steps = (then - this._model.time) / this._model.time_step
 
         for (i in parseInt(n_steps)){
@@ -101,11 +101,11 @@ class BmiHeat{
         this._model = null
     }
 
-    get var_type(var_name){
+    get_var_type(var_name){
         return String(this.value_ptr(var_name).dtype)
     }
 
-    get var_units(var_name){
+    get_var_units(var_name){
         return this._var_units[var_name]
     }
     
@@ -114,25 +114,29 @@ class BmiHeat{
     //     return this.value_ptr(var_name).nbytes
     // }
 
-    get var_itemsize(name){
+    get_var_itemsize(name){
         return nj.dtype(this.var_type(name)).itemsize
     }
         
 
-    get var_location(name){
+    get_var_location(name){
         return this._var_loc[name]
     }
        
 
-    // get_var_grid(var_name){
-    //     for grid_id, var_name_list in this._grids.items():
-    //     if var_name in var_name_list:
-    //         return grid_id
-    // }
+    get_var_grid(var_name){
+        for (grid_id, var_name_list in this._grids.items()){
+            if (var_name in var_name_list){
+                return grid_id
+            }
+            
+        }
+       
+    }
         
       
 
-    get grid_rank(grid_id){
+    get_grid_rank(grid_id){
         return len(this._model.shape)
     }
         
@@ -141,34 +145,34 @@ class BmiHeat{
     // }
        
 
-    get value_ptr(var_name){
+    get_value_ptr(var_name){
         return this._values[var_name]
 
     }
         
 
-    // get_value(var_name, dest){
+    get_value(var_name, dest){
 
-    //     dest[:] = this.get_value_ptr(var_name).flatten()
-    //     return dest
-    // }
+        dest = this.value_ptr(var_name).flatten()
+        return dest
+    }
         
 
-    // get_value_at_indices(var_name, dest, indices){
-    //     dest[:] = this.get_value_ptr(var_name).take(indices)
-    //     return dest
-    // }
+    get_value_at_indices(var_name, dest, indices){
+        dest = this.value_ptr(var_name).slice(indices)
+        return dest
+    }
         
       
 
-    // set_value(var_name, src){
-    //     val = this.get_value_ptr(var_name)
-    //     val[:] = src.reshape(val.shape)
-    // }
+    set_value(var_name, src){
+        val = this.value_ptr(var_name)
+        val = src.reshape(val.shape)
+    }
        
        
 
-    set value_at_indices(name, inds, src){
+    set_value_at_indices(name, inds, src){
         val = this.get_value_ptr(name)
         val.flat[inds] = src
     }
@@ -199,25 +203,25 @@ class BmiHeat{
         return this._output_var_names
     }
 
-    // get_grid_shape(grid_id, shape){
-    //     var_name = this._grids[grid_id][0]
-    //     shape[:] = this.get_value_ptr(var_name).shape
-    //     return shape
-    // }
+    get_grid_shape(grid_id, shape){
+        var_name = this._grids[grid_id][0]
+        shape = this.value_ptr(var_name).shape
+        return shape
+    }
        
 
-    // get_grid_spacing(grid_id, spacing){
-    //     spacing[:] = this._model.spacing
-    //     return spacing
-    // }
+    get_grid_spacing(grid_id, spacing){
+        spacing = this._model.spacing
+        return spacing
+    }
        
-    // get_grid_origin(grid_id, origin){
-    //     origin[:] = this._model.origin
-    //     return origin
-    // }
+    get_grid_origin(grid_id, origin){
+        origin = this._model.origin
+        return origin
+    }
         
 
-    get grid_type( grid_id){
+    get_grid_type( grid_id){
         return this._grid_type[grid_id]
     }
 
@@ -241,49 +245,49 @@ class BmiHeat{
         return this._time_units
     }
 
-    // get_grid_edge_count(grid){
-    //     raise NotImplementedError("get_grid_edge_count")
-    // }
+    get_grid_edge_count(grid){
+        throw "NotImplementedError: get_grid_edge_count"
+    }
 
-    // get_grid_edge_nodes(grid, edge_nodes){
-    //     raise NotImplementedError("get_grid_edge_nodes")
-    // }
+    get_grid_edge_nodes(grid, edge_nodes){
+        throw "NotImplementedError get_grid_edge_nodes"
+    }
 
-    // get_grid_face_count( grid){
-    //     raise NotImplementedError("get_grid_face_count")
-    // }
+    get_grid_face_count(grid){
+        throw "NotImplementedError get_grid_face_count"
+    }
 
-    // get_grid_face_nodes(grid, face_nodes){
-    //     raise NotImplementedError("get_grid_face_nodes")
-    // }
+    get_grid_face_nodes(grid, face_nodes){
+        throw "NotImplementedError get_grid_face_nodes"
+    }
 
-    get grid_node_count(grid){
+    get_grid_node_count(grid){
         return this.get_grid_size(grid)
     }
        
 
-    // get_grid_nodes_per_face(grid, nodes_per_face){
-    //     raise NotImplementedError("get_grid_nodes_per_face")
-    // }
+    get_grid_nodes_per_face(grid, nodes_per_face){
+        throw "NotImplementedError get_grid_nodes_per_face"
+    }
 
-    // get_grid_face_edges(grid, face_edges){
-    //     raise NotImplementedError("get_grid_face_edges")
-    // }
+    get_grid_face_edges(grid, face_edges){
+        throw "NotImplementedError get_grid_face_edges"
+    }
 
-    // get_grid_x( grid, x){
-    //     raise NotImplementedError("get_grid_x")
+    get_grid_x( grid, x){
+        throw "NotImplementedError get_grid_x"
 
-    // }
+    }
 
-    // get_grid_y(grid, y){
-    //     raise NotImplementedError("get_grid_y")
+    get_grid_y(grid, y){
+        throw "NotImplementedError get_grid_y"
 
-    // }
+    }
 
-    // get_grid_z(this, grid, z){
-    //     raise NotImplementedError("get_grid_z")
+    get_grid_z(this, grid, z){
+        throw "NotImplementedError get_grid_z"
 
-    // }
+    }
        
         
         
