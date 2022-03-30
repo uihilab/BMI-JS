@@ -6,7 +6,7 @@
 */
 
 
- class BMI {
+ export class BMI {
 
     /**
      * Perform startup tasks for the model.
@@ -21,7 +21,7 @@
 
      initialize(config_file) {
         if (this.constructor == BMI) {
-            throw new Error(" Object of Abstract Class cannot be created");
+            throw new Error("Object of Abstract Class cannot be created");
         }
     }
 
