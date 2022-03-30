@@ -1,5 +1,5 @@
 import { BMI } from "../bmi/bmi.js";
-import { Heat } from "../heat/heat_vanilla_java.js";
+import { Heat } from "./heat.js";
 
 /**
  * BMI methods that wrap the {@link edu.colorado.csdms.heat.Heat} class.
