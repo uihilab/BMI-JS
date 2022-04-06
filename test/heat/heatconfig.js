@@ -5,8 +5,8 @@ export class HeatConfigFile {
     #parameters;
   
     /**
-     * Makes an instance of HeatConfigFile.
-     *
+     * @static
+     * @method HeatConfigFile - Makes an instance of HeatConfigFile.
      * @param fileName the path to the configuration file
      */
     static HeatConfigFile(fileName) {
@@ -15,9 +15,9 @@ export class HeatConfigFile {
     }
     
     /**
-     * Extracts parameter names and values from the file.
-     *
-     * @return a {@link java.util.HashMap} with parameter names and values
+     * @static
+     * @method load - Extracts parameter names and values from the file.
+     * @return an Object with parameter names and values
      */
     static load() {
       loadFile();
@@ -26,27 +26,19 @@ export class HeatConfigFile {
     }
   
     /**
-     * Load the contents of an XML file.
-     * 
+     * @static
+     * @method loadFile - Load the contents of an XML file.
      * @param fileName the name of the XML file
      * @return the file contents as a Document
      */
     static loadFile() {
         const parser = new DOMParser();
         this.#doc = parser.parseFromString(this.#fileName, "application/xml");
-    //   DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-    //   DocumentBuilder db;
-      
-    //   try {
-    //     db = dbf.newDocumentBuilder();
-    //     doc = db.parse(new File(fileName));
-    //   } catch (Exception e) {
-    //     e.printStackTrace();
-    //   }
     }
   
     /**
-     * Parse parameter names and values from the XML document.
+     * @static
+     * @method parseParameters - Parse parameter names and values from the XML document.
      */
     static parseParameters() {
     //   Node modelNode = doc.getLastChild();
