@@ -1,5 +1,10 @@
 import { HeatConfigFile } from "../heat/heatconfig.js";
 import { Solve2D } from "../heat/solve2D.js";
+
+/**
+ * @class Heat
+ */
+
 export class Heat {
 
     #shape;
@@ -23,9 +28,9 @@ export class Heat {
    * @param alpha parameter in heat equation
    */
   constructor(nRows,nCols,dx,dy,xStart,yStart,alpha) {
-  this.#shape = [nRows, nCols];
-  this.#spacing = [dy, dx];
-  this.#origin = [yStart, xStart];
+  this.#shape = [nRows,nCols];
+  this.#spacing = [dy,dx];
+  this.#origin = [yStart,xStart];
   this.#alpha = alpha;
   this.#time = 0.0;
 
@@ -33,15 +38,16 @@ export class Heat {
   this.#timeStep = Math.pow(minSpacing, 2.0) / (4.0 * this.alpha);
 
   // Initialize plate temperature.
-  const M = nRows, N = nCols;
- 
-    var arr = new Array(M);            // create an empty array of length `M`
-    for (var i = 0; i < M; i++) {
-        arr[i] = new Array(N);        // make each element an array
-    }
-  this.#temperature = arr;
+  this.#temperature = this.create2DArray(nRows,nCols);
   }
 
+  create2DArray(M,N){
+    var arr1 = new Array(M);            // create an empty array of length `M`
+    for (var i = 0; i < M; i++) {
+        arr1[i] = new Array(N);        // make each element an array
+    }
+    return arr1;
+  }
 // /**
 //  * Create a Heat model using default parameter values.
 //  */

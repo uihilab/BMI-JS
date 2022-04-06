@@ -1,9 +1,8 @@
 {
-  "dependencies": {
-    "js-yaml": "^4.1.0",
-    "jsnumpy": "^1.1.10",
-    "matrix_deep_clone": "^1.0.2",
-    "numjs": "^0.16.1",
-    "scipy": "^0.1.4"
+  "devDependencies": {
+    "mocha": "^9.2.2"
+  },
+  "scripts": {
+    "test": "mocha"
   }
 }
