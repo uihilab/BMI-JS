@@ -10,14 +10,15 @@ bmi
 bmi.js: Holds the Basic Model Interface (BMI) JavaScript specification.
 
 test/data
-data.xml: Holds the initializing values for Heat Model.
+data.json: Holds the initializing values for Heat Model.
 
 test/heat
 bmiheat.js: Contains BMI methods that wrap the Heat class
-heat.js: Uses heatconfig and solve2D to perform various operations on the model.
-heatconfig.js: Makes an instance of HeatConfigFile.
+heat.js: Uses solve2D to perform various operations on the model.
 solve2D.js: Solve the 2D heat equation on a uniform grid.
 
 test/test-cases
-test.js: Unit tests for the model
-bmiHeatTest.js: Unit tests for the model BMI
+bmiheat.test.js: Unit tests for BmiHeat
+heat.test.js: Unit tests for Heat
+solve2D.test.js: Unit tests for solve2D
+bmi.test.js: Unit tests for Bmi
