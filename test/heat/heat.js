@@ -1,12 +1,10 @@
-import { HeatConfigFile } from "../heat/heatconfig.js";
-import { Solve2D } from "../heat/solve2D.js";
+const Solve2D = require("../heat/solve2D.js");
 
 /**
  * @class Heat
  */
 
-export class Heat {
-
+class Heat {
   #shape;
   #spacing;
   #origin;
@@ -15,19 +13,36 @@ export class Heat {
   #timeStep;
   #temperature;
 
-
   /**
-    * Create a new Heat model.
-    *
-    * @param nRows the number of rows in the solution grid
-    * @param nCols the number of columns in the solution grid
-    * @param dx distance between columns in grid
-    * @param dy distance between rows in grid
-    * @param xStart coordinates of lower left corner of grid
-    * @param yStart coordinates of lower left corner of grid
-    * @param alpha parameter in heat equation
-    */
+   * Create a new Heat model.
+   * @param nRows the number of rows in the solution grid
+   * @param nCols the number of columns in the solution grid
+   * @param dx distance between columns in grid
+   * @param dy distance between rows in grid
+   * @param xStart coordinates of lower left corner of grid
+   * @param yStart coordinates of lower left corner of grid
+   * @param alpha parameter in heat equation
+   */
   constructor(nRows, nCols, dx, dy, xStart, yStart, alpha) {
+    if (typeof nRows === "undefined") {
+      nRows = 8;
+      nCols = 6;
+      dx = 1.0;
+      dy = 1.0;
+      xStart = 0.0;
+      yStart = 0.0;
+      alpha = 1.0;
+    } else if (typeof nRows == "string" && typeof nCols === "undefined") {
+      const file_params = require(nRows);
+      nRows = file_params.nRows;
+      nCols = file_params.nCols;
+      dx = file_params.dx;
+      dy = file_params.dy;
+      xStart = file_params.xStart;
+      yStart = file_params.yStart;
+      alpha = file_params.alpha;
+    } else {
+    }
     this.#shape = [nRows, nCols];
     this.#spacing = [dy, dx];
     this.#origin = [yStart, xStart];
@@ -35,7 +50,7 @@ export class Heat {
     this.#time = 0.0;
 
     var minSpacing = Math.min(dy, dx);
-    this.#timeStep = Math.pow(minSpacing, 2.0) / (4.0 * this.alpha);
+    this.#timeStep = Math.pow(minSpacing, 2.0) / (4.0 * this.#alpha);
 
     /**
      *  Initialize plate temperature.
@@ -43,55 +58,18 @@ export class Heat {
     this.#temperature = this.create2DArray(nRows, nCols);
   }
 
-
   /**
-   * 
-   * @param {Number} row 
-   * @param {Number} column 
+   *
+   * @param {Number} row
+   * @param {Number} column
    * @returns 2D Array of size [Row][Column]
    */
   create2DArray(row, column) {
-    var arr = new Array(row);
+    var arr = new Array(row).fill(0.0);
     for (var i = 0; i < row; i++) {
-      arr[i] = new Array(column);
+      arr[i] = new Array(column).fill(0.0);
     }
     return arr;
-  }
-
-
-  // /**
-  //  * Create a Heat model using default parameter values.
-  //  */
-  // constructor() {
-  //   this(8, 6, 1.0, 1.0, 0.0, 0.0, 1.0);
-  // }
-
-  // /**
-  //  * Create a Heat model from settings in a file.
-  //  *
-  //  * @param fileName an XML file with Heat model settings
-  //  */
-  // constructor(fileName) {
-  //   this(parseInt(config(fileName).get("nRows")),
-  //   parseInt(config(fileName).get("nCols")),
-  //       config(fileName).get("dx"),
-  //       config(fileName).get("dy"),
-  //       config(fileName).get("xStart"),
-  //       config(fileName).get("yStart"),
-  //       config(fileName).get("alpha"));
-  // }
-
-  /**
-   * @private
-   * @method #configFile
-   * @memberof Heat
-   * A helper method for returning parameters read from a model configuration
-   * file. This is a workaround for requiring "this()" to be the first statement
-   * in a constructor.
-   */
-  #config(fileName) {
-    let h = new HeatConfigFile(fileName);
-    return h.load();
   }
 
   /**
@@ -99,7 +77,7 @@ export class Heat {
    *
    * @return an array.
    */
-  getShape() {
+  get_shape() {
     return this.#shape;
   }
 
@@ -108,70 +86,70 @@ export class Heat {
    *
    * @param shape an array.
    */
-  setShape(shape) {
+  set_shape(shape) {
     this.#shape = shape;
   }
 
   /**
-   * Getter for the field spacing. 
+   * Getter for the field spacing.
    *
    * @return an array.
    */
-  getSpacing() {
+  get_spacing() {
     return this.#spacing;
   }
 
   /**
-   *  Setter for the field spacing. 
+   *  Setter for the field spacing.
    *
    * @param spacing an array.
    */
-  setSpacing(spacing) {
+  set_spacing(spacing) {
     this.#spacing = spacing;
   }
 
   /**
-   *  Getter for the field origin. 
+   *  Getter for the field origin.
    *
    * @return an array..
    */
-  getOrigin() {
+  get_origin() {
     return this.#origin;
   }
 
   /**
-   *  Setter for the field origin. 
+   *  Setter for the field origin.
    *
    * @param origin an array.
    */
-  setOrigin(origin) {
+  set_origin(origin) {
     this.#origin = origin;
   }
 
   /**
-   *  Getter for the field alpha. 
+   *  Getter for the field alpha.
    *
    * @return a Number Object.
    */
-  getAlpha() {
+  get_alpha() {
     return this.#alpha;
   }
 
   /**
-   *  Setter for the field alpha. 
+   *  Setter for the field alpha.
    *
    * @param alpha a Number Object.
    */
-  setAlpha(alpha) {
+  set_alpha(alpha) {
     this.#alpha = alpha;
   }
 
   /**
-   *  Getter for the field time. 
+   *  Getter for the field time.
    *
    * @return a Number Object.
    */
-  getTime() {
+  get_time() {
     return this.#time;
   }
 
@@ -180,62 +158,62 @@ export class Heat {
    *
    * @param time a Number Object.
    */
-  setTime(time) {
+  set_time(time) {
     this.#time = time;
   }
 
   /**
-   *  Getter for the field timeStep . 
+   *  Getter for the field timeStep .
    *
    * @return a Number Object.
    */
-  getTimeStep() {
+  get_time_step() {
     return this.#timeStep;
   }
 
   /**
-   *  Setter for the field timeStep . 
+   *  Setter for the field timeStep .
    *
    * @param timeStep a Number Object.
    */
-  setTimeStep(timeStep) {
+  set_time_step(timeStep) {
     this.#timeStep = timeStep;
   }
 
   /**
-   *  Getter for the field temperature . 
+   *  Getter for the field temperature .
    *
    * @return a 2D array of Number.
    */
-  getTemperature() {
+  get_temperature() {
     return this.#temperature;
   }
 
   /**
-   *  Setter for the field temperature . 
+   *  Setter for the field temperature .
    *
    * @param temperature a 2D array of Number.
    */
-  setTemperature(temperature) {
+  set_temperature(temperature) {
     this.#temperature = temperature;
   }
 
   /**
-     * Helper function to deal with array copying
-     */
+   * Helper function to deal with array copying
+   */
   deepCopy(arr) {
     let copy = [];
-    arr.forEach(elem => {
+    arr.forEach((elem) => {
       if (Array.isArray(elem)) {
-        copy.push(this.deepCopy(elem))
+        copy.push(this.deepCopy(elem));
       } else {
-        if (typeof elem === 'object') {
-          copy.push(this.deepCopyObject(elem))
+        if (typeof elem === "object") {
+          copy.push(this.deepCopyObject(elem));
         } else {
-          copy.push(elem)
+          copy.push(elem);
         }
       }
-    })
+    });
     return copy;
   }
 
@@ -248,10 +226,10 @@ export class Heat {
       if (Array.isArray(value)) {
         tempObj[key] = this.deepCopy(value);
       } else {
-        if (typeof value === 'object') {
+        if (typeof value === "object") {
           tempObj[key] = this.deepCopyObject(value);
         } else {
-          tempObj[key] = value
+          tempObj[key] = value;
         }
       }
     }
@@ -261,37 +239,44 @@ export class Heat {
   /**
    * Calculate new temperatures for the next time step.
    */
-  advanceInTime() {
+  advance_in_time() {
     let copy = this.deepCopy(this.#temperature);
-    this.#temperature = Solve2D.solve(copy, this.#shape, this.#spacing, this.#alpha, this.#timeStep);
+    this.#temperature = Solve2D.solve(
+      copy,
+      this.#shape,
+      this.#spacing,
+      this.#alpha,
+      this.#timeStep
+    );
     this.#time += this.#timeStep;
   }
 }
 
+module.exports = Heat;
 
 console.log("*\n* Example: Heat Model\n*");
-let heat = new Heat(8, 6, 1.0, 1.0, 0.0, 0.0, 1.0);
-console.log("shape: " + heat.getShape().toString());
-console.log("spacing: " + heat.getSpacing().toString());
-console.log("origin: " + heat.getOrigin().toString());
+// let heat = new Heat(8, 6, 1.0, 1.0, 0.0, 0.0, 1.0);
+let heat = new Heat("../data/heat.json");
+console.log("shape: " + heat.get_shape().toString());
+console.log("spacing: " + heat.get_spacing().toString());
+console.log("origin: " + heat.get_origin().toString());
 
 // Place impulse in termperature field.
-let temp0 = heat.getTemperature();
+let temp0 = heat.get_temperature();
 temp0[3][2] = 100.0;
-heat.setTemperature(temp0);
+heat.set_temperature(temp0);
 
 // Advance model over several time steps.
-let currentTime = heat.getTime();
+let currentTime = heat.get_time();
 while (currentTime < 1.0) {
   console.log("time = " + currentTime.toString());
   console.log("temperature =");
-  let temp = heat.getTemperature();
-  for (let j = 0; j < (heat.getShape())[0]; j++) {
-    for (let i = 0; i < (heat.getShape())[1]; i++) {
-      console.log(temp[j][i]);
-    }
+  let temp = heat.get_temperature();
+  temp.forEach((element) => {
+    let string1 = element.join("  ");
+    console.log(string1);
     console.log("\n");
-  }
-  heat.advanceInTime();
-  currentTime = heat.getTime();
+  });
+  heat.advance_in_time();
+  currentTime = heat.get_time();
 }

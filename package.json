@@ -1,8 +1,9 @@
 {
   "devDependencies": {
-    "mocha": "^9.2.2"
+    "jest": "^28.0.2"
   },
   "scripts": {
-    "test": "mocha"
-  }
+    "test": "jest"
+  },
+  "type": "commonjs"
 }

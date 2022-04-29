@@ -1,6 +1,4 @@
-
-export class Solve2D {
-
+class Solve2D {
   /**
    * Solve the 2D heat equation on a uniform grid.
    *
@@ -11,15 +9,14 @@ export class Solve2D {
    * @param timeStep current time step
    * @return the temperatures after timeStep
    */
-  static solve(temperature, shape,
-    spacing, alpha, timeStep) {
-
+  static solve(temperature, shape, spacing, alpha, timeStep) {
     let topRowIndex = shape[0] - 1;
     let topColIndex = shape[1] - 1;
     let dx2 = Math.pow(spacing[1], 2.0);
     let dy2 = Math.pow(spacing[0], 2.0);
-    let c = alpha * timeStep / (dx2 + dy2);
-    const M = shape[0], N = shape[1];
+    let c = (alpha * timeStep) / (dx2 + dy2);
+    const M = shape[0],
+      N = shape[1];
 
     var arr = new Array(M);
     for (var i = 0; i < M; i++) {
@@ -55,3 +52,5 @@ export class Solve2D {
     return newTemperature;
   }
 }
+
+module.exports = Solve2D;
