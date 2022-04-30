@@ -146,7 +146,7 @@ class BmiHeat extends BMI {
     let arr = Object.values(this.#grids);
     for (let i = 0; i < arr.length; i++) {
       if (arr[i] == varName) {
-        return Object.keys(this.#grids)[i];
+        return parseInt(Object.keys(this.#grids)[i]);
       }
     }
     return -1;
@@ -157,7 +157,7 @@ class BmiHeat extends BMI {
    */
   get_var_type(varName) {
     if (varName == this.get_output_var_names()[0]) {
-      if (typeof this.#model.get_temperature() == Number) {
+      if (typeof this.#model.get_temperature() === "Number") {
         return "Number";
       }
     }
@@ -324,7 +324,7 @@ class BmiHeat extends BMI {
   /**
    * @override
    */
-  set_grid_rank(gridId) {
+  get_grid_rank(gridId) {
     return this.#model.get_shape().length;
   }
 
@@ -349,10 +349,11 @@ class BmiHeat extends BMI {
   /**
    * @override
    */
-  set_grid_shape(gridId, gridShape) {
+  get_grid_shape(gridId, gridShape) {
     for (let i = 0; i < this.#model.get_shape().length; i++) {
       gridShape[i] = this.#model.get_shape()[i];
     }
+    return gridShape;
   }
 
   /**
@@ -362,6 +363,7 @@ class BmiHeat extends BMI {
     for (let i = 0; i < this.#model.get_spacing().length; i++) {
       gridSpacing[i] = this.#model.get_spacing()[i];
     }
+    return gridSpacing;
   }
 
   /**
@@ -371,6 +373,7 @@ class BmiHeat extends BMI {
     for (let i = 0; i < this.#model.get_origin().length; i++) {
       gridOrigin[i] = this.#model.get_origin()[i];
     }
+    return gridOrigin;
   }
 
   /**

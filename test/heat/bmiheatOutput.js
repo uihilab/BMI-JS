@@ -30,24 +30,24 @@ console.log("Variable: " + var_name);
 let gridId = bmi.get_var_grid(var_name);
 console.log("- grid_id: " + gridId);
 console.log("- grid type: " + bmi.get_grid_type(gridId));
-let gridRank = bmi.set_grid_rank(gridId);
+let gridRank = bmi.get_grid_rank(gridId);
 console.log("- grid rank: " + gridRank);
 console.log("- grid size: " + bmi.get_grid_size(gridId));
 console.log("- grid shape:");
 let gridShape = new Array(parseInt(gridRank));
-bmi.set_grid_shape(gridId, gridShape);
+gridShape = bmi.get_grid_shape(gridId, gridShape);
 for (let i = 0; i < gridRank; i++) {
   console.log("  - " + gridShape[i]);
 }
 console.log("- grid spacing:");
 let gridSpacing = new Array(parseInt(gridRank));
-bmi.get_grid_spacing(gridId, gridSpacing);
+gridSpacing = bmi.get_grid_spacing(gridId, gridSpacing);
 for (let i = 0; i < gridRank; i++) {
   console.log("  - " + gridSpacing[i]);
 }
 console.log("- grid origin:");
 let gridOrigin = new Array(parseInt(gridRank));
-bmi.get_grid_origin(gridId, gridOrigin);
+gridOrigin = bmi.get_grid_origin(gridId, gridOrigin);
 for (let i = 0; i < gridRank; i++) {
   console.log("  - " + gridOrigin[i]);
 }
