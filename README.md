@@ -5,7 +5,7 @@ JavaScript bindings for the CSDMS Basic Model Interface
 You can find the bmi-specification file in the location: BMI-JS/bmi/bmi.js, download it into your repository and inherit the file in your model class
 
 # Usage
-.. code-block:: JavaScript
+```JavaScript
 
   import { BMI } from "./bmi.js";
   
@@ -15,7 +15,7 @@ You can find the bmi-specification file in the location: BMI-JS/bmi/bmi.js, down
           # Your implementation goes here
           }
     }
-
+    ```
 
 # Link to bmi-example-js:
 
