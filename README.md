@@ -17,7 +17,7 @@ You can find the bmi-specification file in the location: `BMI-JS/bmi/bmi.js`, do
     }
 ```
 
-# Link to bmi-example-js:
+# Example Implementations
 Complete model implementations for BMI-JS 
 
 [BMI-Heat](https://github.com/uihilab/bmi-example-js)
