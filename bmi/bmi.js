@@ -524,5 +524,3 @@ class BMI {
     throw new Error("Abstract Method has no implementation");
   }
 }
-
-module.exports = BMI;
