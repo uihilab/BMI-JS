@@ -15,7 +15,7 @@ You can find the bmi-specification file in the location: BMI-JS/bmi/bmi.js, down
           # Your implementation goes here
           }
     }
-    ```
+```
 
 # Link to bmi-example-js:
 
