@@ -20,3 +20,8 @@ solve2D.js: Solve the 2D heat equation on a uniform grid.
 test/test-cases
 bmiheat.test.js: Unit tests for BmiHeat
 heat.test.js: Unit tests for Heat
+
+# Link to bmi-examples-js:
+
+HLM-Web (BMI Version):
+https://github.com/uihilab/HLM-Web/tree/main/bmi-version
