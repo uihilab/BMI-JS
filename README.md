@@ -21,7 +21,7 @@ test/test-cases
 bmiheat.test.js: Unit tests for BmiHeat
 heat.test.js: Unit tests for Heat
 
-# Link to bmi-examples-js:
+# Link to bmi-example-js:
 
 [BMI-Heat]()
 [HLM-Web (BMI Version)](https://github.com/uihilab/HLM-Web/tree/main/bmi-version)
