@@ -8,9 +8,13 @@ You can find the bmi-specification file in the location: BMI-JS/bmi/bmi.js, down
 .. code-block:: JavaScript
 
   import { BMI } from "./bmi.js";
+  
   class MyBmi extends BMI{
-      function initialize(self, config_file){
+  
+    function initialize(self, config_file){
           # Your implementation goes here
+          }
+    }
 
 
 # Link to bmi-example-js:
