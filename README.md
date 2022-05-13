@@ -1,24 +1,27 @@
-# BMI-JS
-An example of implementing the JavaScript specification for the CSDMS Basic Model Interface (BMI).
+# BMI for JavaScript
+JavaScript bindings for the CSDMS [Basic Model Interface](https://bmi.readthedocs.io/en/latest/)
 
-# Overview
-This is an example of implementing a BMI for a simple model that solves the diffusion equation on a uniform rectangular plate with Dirichlet boundary conditions. Tests and examples of using the BMI are provided. The model and its BMI are written in JavaScript.
+# Usage
+You can find the bmi-specification file in the location: `BMI-JS/bmi/bmi.js`, download it into your repository and inherit the file in your model class
 
-# This project is organized as follows:
 
-bmi
-bmi.js: Holds the Basic Model Interface (BMI) JavaScript specification.
+```JavaScript
 
-test/data
-data.json: Holds the initializing values for Heat Model.
+  import { BMI } from "./bmi.js";
+  
+  class MyBmi extends BMI{
+  
+    function initialize(self, config_file){
+          # Your implementation goes here
+          }
+    }
+```
 
-test/heat
-bmiheat.js: Contains BMI methods that wrap the Heat class
-heat.js: Uses solve2D to perform various operations on the model.
-solve2D.js: Solve the 2D heat equation on a uniform grid.
+# Example Implementations
+Complete model implementations for BMI-JS 
 
-test/test-cases
-bmiheat.test.js: Unit tests for BmiHeat
-heat.test.js: Unit tests for Heat
-solve2D.test.js: Unit tests for solve2D
-bmi.test.js: Unit tests for Bmi
+[BMI-Heat](https://github.com/uihilab/bmi-example-js)
+
+[HLM-Web (BMI Version)](https://github.com/uihilab/HLM-Web/tree/main/bmi-version)
+
+<!-- Hydrolang (BMI Version)]() -->
