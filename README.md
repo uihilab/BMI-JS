@@ -20,5 +20,3 @@ solve2D.js: Solve the 2D heat equation on a uniform grid.
 test/test-cases
 bmiheat.test.js: Unit tests for BmiHeat
 heat.test.js: Unit tests for Heat
-solve2D.test.js: Unit tests for solve2D
-bmi.test.js: Unit tests for Bmi
