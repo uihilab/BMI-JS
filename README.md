@@ -24,4 +24,4 @@ Complete model implementations for BMI-JS
 
 [HLM-Web (BMI Version)](https://github.com/uihilab/HLM-Web/tree/main/bmi-version)
 
-[Hydrolang (BMI Version)]()
+<!-- Hydrolang (BMI Version)]() -->
