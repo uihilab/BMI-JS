@@ -12,7 +12,7 @@ You can find the bmi-specification file in the location: `BMI-JS/bmi/bmi.js`, do
   class MyBmi extends BMI{
   
     function initialize(self, config_file){
-          # Your implementation goes here
+          // Your implementation goes here
           }
     }
 ```
