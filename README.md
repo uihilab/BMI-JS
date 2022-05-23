@@ -2,7 +2,7 @@
 JavaScript bindings for the CSDMS [Basic Model Interface 2.0](https://bmi.readthedocs.io/en/latest/)
 
 ## Usage
-You can find the bmi-specification file in the location: `BMI-JS/bmi/bmi.js`, download it into your repository and inherit the file in your model class
+You can find the bmi-specification file in the location: `BMI-JS/bmi/bmi.js`, clone the repository into your project and inherit the file in your model as an imported class.
 
 
 ```JavaScript
