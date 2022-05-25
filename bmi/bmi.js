@@ -5,7 +5,7 @@
  * @class BMI
  */
 
-class BMI {
+export default class BMI {
   /**
    * Perform startup tasks for the model.
    * Perform all tasks that take place before entering the model's time
@@ -238,7 +238,6 @@ class BMI {
    * Current time of the model
    * @method get_current_time
    * @memberof BMI
-   * @param {String} name - An input or output variable name, a CSDMS Standard Name
    * @returns {Number} - The current model time.
    */
 
