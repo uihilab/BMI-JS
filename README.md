@@ -24,7 +24,7 @@ Complete model implementations for bmi-js
 
 [HLM-Web (BMI Version)](https://github.com/uihilab/HLM-Web/tree/main/bmi-version)
 
-<!-- Hydrolang (BMI Version)]() -->
+[Hydrolang (BMI Version)](https://github.com/uihilab/HydroLang/tree/master/hydrolang/bmi-implementation)
 
 ## Citations
 The specification usage is following the standard set by:
@@ -35,7 +35,8 @@ Peckham, S.D., Hutton, E.W., and Norris, B., 2013. A component-based approach to
 
 The publication describing the implementation in JavaScript as well as the derived case studies can be found in:
 
-Gregory Ewing, Carlos Erazo Ramirez, Ashani Vaidya, Ibrahim Demir. Coupling client-side web applications via the BMI Specification for hydrological modelling. Some Journal Link Here
+Gregory Ewing, Carlos Erazo Ramirez, Ashani Vaidya, Ibrahim Demir, 2022. BMI-JS: A Client-side Web-based Model Coupling Interface for Hydrology and Water Resources. 
+<!-- Some Journal Link Here -->
 
 ## Feedback
 Feel free to send us feedback by filing an issue.
