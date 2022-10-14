@@ -35,8 +35,7 @@ Peckham, S.D., Hutton, E.W., and Norris, B., 2013. A component-based approach to
 
 The publication describing the implementation in JavaScript as well as the derived case studies can be found in:
 
-Gregory Ewing, Carlos Erazo Ramirez, Ashani Vaidya, Ibrahim Demir, 2022. BMI-JS: A Client-side Web-based Model Coupling Interface for Hydrology and Water Resources. 
-<!-- Some Journal Link Here -->
+Ewing G., Erazo Ramirez C., Vaidya W., & Demir I. 2022. Client-side Web-based Model Coupling using Basic Model Interface for Hydrology and Water Resources. EarthArxiv, 4547. https://doi.org/10.31223/X5XP93
 
 ## Feedback
 Feel free to send us feedback by filing an issue.
