@@ -5,7 +5,7 @@
  * @class BMI
  */
 
-class BMI {
+export default class BMI {
   /**
    * Perform startup tasks for the model.
    * Perform all tasks that take place before entering the model's time
