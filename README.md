@@ -1,5 +1,7 @@
+[**Read the package documentation here**](https://uihilab.github.io/BMI-JS/)
+
 # bmi-JavaScript
-JavaScript bindings for the CSDMS [Basic Model Interface 2.0](https://bmi.readthedocs.io/en/latest/). You can find the documentation for each of the variables [here](https://uihilab.github.io/BMI-JS/).
+JavaScript bindings for the CSDMS [Basic Model Interface 2.0](https://bmi.readthedocs.io/en/latest/). 
 
 ## Usage
 You can find the bmi-specification file in the location: `BMI-JS/bmi/bmi.js`, clone the repository into your project and inherit the file in your model as an imported class.
