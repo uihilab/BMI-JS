@@ -15,7 +15,7 @@ jobs:
       - name: Build
         uses: andstor/jsdoc-action@v1
         with:
-          source_dir: ./
+          source_dir: ./bmijs/
           output_dir: ./docs/
           config_file: ./.github/workflows/config.json
           template: clean-jsdoc-theme

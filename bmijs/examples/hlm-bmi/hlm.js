@@ -54,7 +54,7 @@ export default class HLM extends BMI {
 
 				// Import Utilities from src
 				// Then make Link objects
-				Promise.all([import('./models.js'),import('./solvers.js')])
+				Promise.all([import('./models.js.js'),import('./solvers.js.js')])
 				.then( ([models,solvers]) => {
 					this.handleModelConfig(models);
 					this.handleSolverConfig(solvers);

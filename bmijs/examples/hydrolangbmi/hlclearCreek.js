@@ -1,5 +1,5 @@
-import HydroLangBMI from "./../hydroLangBMI.js";
-import { Hydro } from "./../globalHydro.js";
+import HydroLangBMI from "../hydroLangBMI.js.js";
+import { Hydro } from "../globalHydro.js.js";
 
 const h = Hydro.ins();
 

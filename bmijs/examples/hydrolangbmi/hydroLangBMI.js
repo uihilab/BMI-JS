@@ -1,7 +1,7 @@
 //Required imports for the library usage.
-import BMI from "./bmi.js";
-import { Hydro } from "./globalHydro.js";
-import BMIConfig from "./bmiConfig.js";
+import BMI from "./bmi.js.js";
+import { Hydro } from "./globalHydro.js.js";
+import BMIConfig from "./bmiConfig.js.js";
 
 //Calling the HydroLang instance from previously defined namespace
 const hydro = Hydro.ins(),
