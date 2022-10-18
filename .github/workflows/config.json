@@ -4,7 +4,7 @@
         "dictionaries": ["jsdoc"]
     },
     "source": {
-        "include": [],
+        "exclude": ["bmi.test.js"],
         "includePattern": ".js$",
         "excludePattern": "(node_modules/|docs)"
     },
@@ -21,7 +21,7 @@
         "destination": "./docs",
         "encoding": "utf8",
         "private": true,
-        "recurse": false,
+        "recurse": true,
         "template": "./node_modules/clean-jsdoc-theme",
         "theme_opts": {
             "default_theme": "light"

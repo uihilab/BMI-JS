@@ -1,5 +1,7 @@
 [**Read the package documentation here**](https://uihilab.github.io/BMI-JS/)
 
+[**Go back to the Repo**](https://github.com/uihilab/BMI-JS)
+
 # bmi-JavaScript
 JavaScript bindings for the CSDMS [Basic Model Interface 2.0](https://bmi.readthedocs.io/en/latest/). 
 
