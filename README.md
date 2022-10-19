@@ -1,4 +1,4 @@
-[**Read the package documentation here**](https://uihilab.github.io/BMI-JS/)
+<a href="https://uihilab.github.io/BMI-JS/" target="_blank">**Read the package documentation here**</a>
 
 [**Go back to the Repo**](https://github.com/uihilab/BMI-JS)
 
