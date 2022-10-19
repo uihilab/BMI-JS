@@ -22,8 +22,6 @@ class Heat {
   #timeStep;
   #temperature;
 
-  /**
-   */
   constructor(nRows, nCols, dx, dy, xStart, yStart, alpha) {
     if (typeof nRows === "undefined") {
       nRows = 8;
