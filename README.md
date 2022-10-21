@@ -3,7 +3,22 @@
 [**Go back to the Repo**](https://github.com/uihilab/BMI-JS)
 
 # bmi-JavaScript
-JavaScript bindings for the CSDMS [Basic Model Interface 2.0](https://bmi.readthedocs.io/en/latest/). 
+JavaScript bindings for the CSDMS [Basic Model Interface 2.0](https://bmi.readthedocs.io/en/latest/).
+The Basic Model Interface (BMI) is a specification and standard interface to couple numerical models in the geosciences.
+We encourage you to familiarize yourself with the BMI specification documentation and then return here to learn about how to leverage the JavaScript implementation of the standard.
+
+As a very quick overview, the BMI standard prescribes to developers a set of functions to implement on their model or data source, which enables it to communicate to external resources through syntactical variable naming. 
+In total, the current version of the standard describes 41 functions, falling within six functional groups that must be implemented for a resource to be considered BMI-compliant.
+The functional groups and examples of the functions that are listed in the table below.
+
+| **Functional Group**           | **Examples**                                       |
+| ------------------------------ | -------------------------------------------------- |
+| **Model control**              | _initialize, update, finalize_                     |
+| **Model information**          | _get\_input\_var\_names, get\_output\_item\_count_ |
+| **Variable information**       | _get\_var\_units, get\_var\_location_              |
+| **Time**                       | _get\_start\_time, get\_time\_step_                |
+| **Variable getter and setter** | _get\_value, set\_value_                           |
+| **Model grid**                 | _get\_grid\_size, get\_grid\_shape_                |
 
 ## Usage
 You can find the bmi-specification file in the location: `BMI-JS/bmi/bmi.js`, clone the repository into your project and inherit the file in your model as an imported class.
